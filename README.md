@@ -29,7 +29,7 @@ The project consists of the following services:
 ### 1. Clone repository and start docker containers
 
 ```shell
-git clone https://github.com/leartbeqiraj1/cdc-postgresql-clickhouse.git.
+git clone https://github.com/leartbeqiraj1/cdc-postgresql-clickhouse.git
 cd cdc-postgresql-clickhouse/
 docker-compose up -d
 ```
