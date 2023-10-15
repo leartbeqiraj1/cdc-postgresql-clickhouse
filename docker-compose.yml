@@ -54,30 +54,6 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
-  kowl:
-    image: quay.io/cloudhut/kowl:v1.3.1
-    restart: on-failure
-    container_name: kowl
-    ports:
-        - "8080:8080"
-    depends_on:
-        - kafka
-    environment:
-      KAFKA_BROKERS: "kafka:29092"
-
-  adminer:
-    image: adminer:4.8.1
-    container_name: postgres-ui
-    hostname: adminer
-    restart: always
-    ports:
-      - 7775:8080
-    environment:
-      ADMINER_DEFAULT_DB_DRIVER: pgsql
-      ADMINER_DEFAULT_DB_HOST: postgres
-      ADMINER_DEFAULT_DB_NAME: postgres
-
-
   kafka-connect:
     image: confluentinc/cp-kafka-connect-base:6.2.0
     hostname: kafka-connect
@@ -179,3 +155,26 @@ services:
           "schemas.enable": "false"
         }'
         sleep infinity
+
+  kowl:
+    image: quay.io/cloudhut/kowl:v1.3.1
+    restart: on-failure
+    container_name: kowl
+    ports:
+      - "8080:8080"
+    depends_on:
+      - kafka
+    environment:
+      KAFKA_BROKERS: "kafka:29092"
+
+  adminer:
+    image: adminer:4.8.1
+    container_name: adminer
+    hostname: adminer
+    restart: always
+    ports:
+      - 7775:8080
+    environment:
+      ADMINER_DEFAULT_DB_DRIVER: pgsql
+      ADMINER_DEFAULT_DB_HOST: postgres
+      ADMINER_DEFAULT_DB_NAME: postgres
