@@ -49,7 +49,7 @@ adminer             adminer                    running             0.0.0.0:7775-
 
 ```
 ### 3. Verify PostgreSQL data
-Login to [Postgres UI](http://localhost:7775/?pgsql=postgres&username=postgres&db=demo_db&ns=public) and verify that there are **demo_table1** and **demo_table2** with 2 rows inserted each.
+Login to [Postgres UI](http://localhost:7775/?pgsql=postgres&username=postgres&db=demo_db&ns=public) and verify that there are **demo_table1** and **demo_table2** with 2 rows inserted each. Username and Password are both "**postgres**"
 
 ### 4. Verify connection between Debezium Connector and Kafka
 Open [Kowl topics](http://localhost:8080/topics) and verify that Debezium Connector has sucessfully published PostgreSQL data to a Kafka topic. There should be a topic named **demo_data** and it should contain 4 messages inside (all 4 rows from PostgreSQL tables).
