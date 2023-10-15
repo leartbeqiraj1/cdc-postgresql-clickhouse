@@ -52,13 +52,13 @@ adminer             adminer                    running             0.0.0.0:7775-
 Login to [Postgres UI](http://localhost:7775/?pgsql=postgres&username=postgres&db=demo_db&ns=public) and verify that there are **demo_table1** and **demo_table2** with 2 rows inserted each.
 
 ### 4. Verify connection between Debezium Connector and Kafka
-Open [Kowl topics](http://localhost:8080/topics) and verify that Debezium Connector has sucessfully published PostgreSQL data to a Kafka topic. There should be a topic named **demo_data** and it should contain 4 messages inside.
+Open [Kowl topics](http://localhost:8080/topics) and verify that Debezium Connector has sucessfully published PostgreSQL data to a Kafka topic. There should be a topic named **demo_data** and it should contain 4 messages inside (all 4 rows from PostgreSQL tables).
 
 ### 5. Verify connection between ClickHouseSink Connector and Kafka
-Navigate to [Consumer Groups](http://localhost:8080/groups) to verify that ClickHouseSink Connector is a stable consumer, and it has succesfully subsribed to the **demo_data** topic.
+Navigate to [Consumer Groups](http://localhost:8080/groups) to verify that ClickHouseSink Connector is a stable consumer, and it has successfully subscribed to the **demo_data** topic.
 
 ### 6. Verify ClickHouse data
-Open [ClickHouse UI](http://localhost:8123/play) and verify that PostgreSQL data are already pushed to ClickHouse by executing below:
+Open [ClickHouse UI](http://localhost:8123/play) and verify that PostgreSQL data are already pushed to ClickHouse from ClickHouseSink Connector by executing below:
 ```text
 SELECT * FROM demo_table1_mv FINAL;
 SELECT * FROM demo_table2_mv FINAL;
@@ -72,6 +72,5 @@ Go to [Postgres UI](http://localhost:7775/?pgsql=postgres&username=postgres&db=d
 ### 2. Go Back to ClickHouse
 Open [ClickHouse UI](http://localhost:8123/play) again and you should see your changes already applied.
 
-## Conclusion
-In the absence of extensive blogs, posts, or documentation on how to set up this particular pipeline, I spent a considerable amount of time getting it to work locally. My inspiration came from a blog post on ClickHouse's official website [(ClickHouse PostgreSQL Change Data Capture (CDC) - Part 1)](https://clickhouse.com/blog/clickhouse-postgresql-change-data-capture-cdc-part-1). However, I found that more detailed steps were needed to replicate the setup. Hence, I decided to create this blog to provide a clearer pathway for those looking to set up a similar pipeline, with the aim of sparing others from delving into the lower-level details again. Through this documentation, I hope to contribute to the community's shared knowledge and facilitate a smoother setup process for this CDC pipeline.
-
+## Conclusion 
+Inspired by a blog post on ClickHouse's official website [(ClickHouse PostgreSQL Change Data Capture (CDC) - Part 1)](https://clickhouse.com/blog/clickhouse-postgresql-change-data-capture-cdc-part-1), I decided to replicate the setup. Due to the absence of extensive blogs, posts, or documentation on how to set up this particular pipeline locally, I was motivated to create this documentation. Through this effort, I hope to contribute to the community's shared knowledge and facilitate a smoother setup process for this CDC pipeline.
