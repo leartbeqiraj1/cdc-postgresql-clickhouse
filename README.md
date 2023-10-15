@@ -70,7 +70,7 @@ SELECT * FROM demo_table2_mv FINAL;
 Go to [Postgres UI](http://localhost:7775/?pgsql=postgres&username=postgres&db=demo_db&ns=public&table=demo_table2) and insert or update existing rows.
 
 ### 2. Go Back to ClickHouse
-Open [ClickHouse UI](http://localhost:8123/play) again you should already see your changes
+Open [ClickHouse UI](http://localhost:8123/play) again and you should see your changes already applied.
 
 ## Conclusion
 In the absence of extensive blogs, posts, or documentation on how to set up this particular pipeline, I spent a considerable amount of time getting it to work locally. My inspiration came from a blog post on ClickHouse's official website [(ClickHouse PostgreSQL Change Data Capture (CDC) - Part 1)](https://clickhouse.com/blog/clickhouse-postgresql-change-data-capture-cdc-part-1). However, I found that more detailed steps were needed to replicate the setup. Hence, I decided to create this blog to provide a clearer pathway for those looking to set up a similar pipeline, with the aim of sparing others from delving into the lower-level details again. Through this documentation, I hope to contribute to the community's shared knowledge and facilitate a smoother setup process for this CDC pipeline.
