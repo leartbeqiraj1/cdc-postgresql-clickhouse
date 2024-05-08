@@ -1,8 +1,6 @@
-version: "3.0"
-
 services:
   postgres:
-    image: debezium/postgres:13
+    image: debezium/postgres:16-alpine
     container_name: postgres
     hostname: postgres
     restart: always
@@ -28,7 +26,7 @@ services:
       - ./clickhouse/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   zookeeper:
-    image: confluentinc/cp-zookeeper:6.2.0
+    image: confluentinc/cp-zookeeper:7.6.1
     hostname: zookeeper
     container_name: zookeeper
     ports:
@@ -38,7 +36,7 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
 
   kafka:
-    image: confluentinc/cp-kafka:6.2.0
+    image: confluentinc/cp-kafka:7.6.1
     hostname: kafka
     container_name: kafka
     depends_on:
@@ -55,7 +53,7 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
   kafka-connect:
-    image: confluentinc/cp-kafka-connect-base:6.2.0
+    image: confluentinc/cp-kafka-connect-base:7.6.1
     hostname: kafka-connect
     container_name: kafka-connect
     depends_on:
@@ -86,7 +84,7 @@ services:
       - |
         echo "Installing connector plugins"
         confluent-hub install --no-prompt debezium/debezium-connector-postgresql:1.5.0
-        confluent-hub install --no-prompt clickhouse/clickhouse-kafka-connect:0.0.17
+        confluent-hub install --no-prompt clickhouse/clickhouse-kafka-connect:v1.0.16
 
         #
         echo "Launching Kafka Connect worker"
