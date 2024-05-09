@@ -83,7 +83,7 @@ services:
       - -c
       - |
         echo "Installing connector plugins"
-        confluent-hub install --no-prompt debezium/debezium-connector-postgresql:1.5.0
+        confluent-hub install --no-prompt debezium/debezium-connector-postgresql:2.5.3
         confluent-hub install --no-prompt clickhouse/clickhouse-kafka-connect:v1.0.16
 
         #
@@ -110,13 +110,13 @@ services:
               "database.port": "5432",
               "database.user": "postgres",
               "database.password": "postgres",
-              "database.server.name": "DockerServer",
+              "topic.prefix": "locally",
               "database.dbname": "demo_db",
               "transforms": "flatten,routeTopic",
               "transforms.flatten.type": "org.apache.kafka.connect.transforms.Flatten$$Value",
               "transforms.flatten.delimiter": ".",
               "transforms.routeTopic.type": "org.apache.kafka.connect.transforms.RegexRouter",
-              "transforms.routeTopic.regex": "DockerServer.public.(.*)",
+              "transforms.routeTopic.regex": "locally.public.(.*)",
               "transforms.routeTopic.replacement": "demo_data",
               "key.converter": "org.apache.kafka.connect.storage.StringConverter",
               "value.converter": "org.apache.kafka.connect.json.JsonConverter",
