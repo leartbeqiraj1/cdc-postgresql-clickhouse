@@ -31,7 +31,7 @@ The project consists of the following services:
 ```shell
 git clone https://github.com/leartbeqiraj1/cdc-postgresql-clickhouse.git
 cd cdc-postgresql-clickhouse/
-docker-compose up -d
+docker compose up -d
 ```
 
 ### 2. Check if all components are up and running
